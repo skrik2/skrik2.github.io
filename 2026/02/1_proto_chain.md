@@ -1,6 +1,6 @@
 # Proto Chain
 
-Proto Chain is a DSL which describes the encapsulation of traffic proxy.
+Proto Chain is a DSL that describes the encapsulation of proxied traffic.
 
 ```
 all := {tcp,udp,icmp}
