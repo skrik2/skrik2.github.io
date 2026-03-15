@@ -7,13 +7,15 @@
 # 谷歌商店闪退、安装很慢
 
 ```
-app -> Google Play Store -> Battery -> Battery saver -> No restrictions
+setting -> app -> Google Play Store -> Battery -> Battery saver -> No restrictions
 ```
 
-谷歌商店闪退，有很多原因.
+谷歌商店闪退，安装很慢，有很多原因.
 
 我的的建议是开 usb 调试，查系统日志.
 
 **不建议：通过更新系统的方式解决这个问题**
 
-如果实在无法解决，下载 [Aurora Store](https://github.com/whyorean/AuroraStore)
+如果实在无法解决，下载 [Aurora Store](https://github.com/whyorean/AuroraStore) 替代谷歌商店.
+
+我遇到的情况是，谷歌商店有问题，其他用到谷歌框架的应用没问题.
