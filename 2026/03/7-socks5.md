@@ -144,21 +144,22 @@ proxy_reply {
 }
 ```
 
-- `dst_addr/dst_port` 表示：客户端在该 UDP association 过程中预期用于发送 UDP 数据的地址
-- 注意：不是后续发送 UDP 的目标地址，也不是后续客户端发送UDP的来源地址
+- `dst_addr/dst_port` 表示：客户端在该 UDP associate 过程中准备用于发送 UDP 数据包的地址
+- 注意：不是后续发送的 relay UDP 数据包对应的目标地址，也不是后续客户端发送的 relay UDP 数据的来源地址
 - 服务器可以用于策略控制，添加防火墙规则之类的
-- 如果，不需要服务器策略控制， `DST.ADDR/PORT` 可以用全零的端口号和地址
-- `bnd_addr/port` 表示 socks5 server 在这个地址启动了一个 udp relay server ，后续 client 必须发送 udp 报文到 udp relay server.
+- 如果，不需要服务器策略控制， `dst_addr/dst_port` 可以用全零的端口号和地址
+- 注意：大部分情况下 `dst_addr/dst_port` 并不能真实的反应最终到达 socks5 server 的 UDP 数据包来源地址，所以此项在具体实现中建议使用全零的端口和地址
+- `bnd_addr/port` 表示这个地址有一个已经工作的 udp relay server ，后续 client 必须发送 udp 报文到 udp relay server
 
 ### FQA 为什么保留 UDP ASSOCIATE 过程中 atyp 可以是 domain 的这种设计？
 
-我感觉是没有必要的，可能是为了方便解析器的实现吧.
+我感觉没有必要的，可能是为了方便解析器的实现吧.
 
 ## 第二阶段
 
 - Client 可以向从第一阶段获取的 `bnd_addr/port` 地址发送 UDP 报文
 - UDP ASSOCIATE 必须要保持原有的 TCP 连接存活，如果原有的 TCP 连接端口，则立即停止 UDP ASSOCIATE
-- relay server 只接受 **来自创建 UDP ASSOCIATE 的 TCP Client 所对应的 IP**
+- relay server 只接受 **来自创建 UDP ASSOCIATE 的 TCP Client 所对应的 IP** 的 UDP 包
 - 每个 UDP 报文，需要添加 以下格式的头部
 
 ```js
