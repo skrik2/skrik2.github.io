@@ -41,7 +41,6 @@ no_connect_stream {
 }
 
 ```
-
 **ATYP / address / port**: Uses the SOCKS address format, but with different address types:
 
 | ATYP   | Address type |
@@ -49,6 +48,4 @@ no_connect_stream {
 | `0x00` | IPv4 Address |
 | `0x01` | IPv6 Address |
 | `0x02` | Domain Name  |
-```
 
-- ATYP 采用 socks5 的报文格式
