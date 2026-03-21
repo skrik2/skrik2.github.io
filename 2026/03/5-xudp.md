@@ -31,14 +31,14 @@ XUDP Stream:
 
 ```
 XUDP_0 {
-	stream_id(8), // 子隧道标识
+	stream_id(16), // stream 标识
 	atyp(8)=0x00, // 地址类型，复用该子隧道上一次使用的地址和端口
 	length(16), // payload 长度
 	payload(..) // payload
 }
 
 XUDP_1 {
-	stream_id(8), // 子隧道标识
+	stream_id(16), // stream 标识
 	atyp(8)=0x01, // 地址类型 IPv4+port
 	addr(48), // IPv4
 	port(16), // port
@@ -47,7 +47,7 @@ XUDP_1 {
 }
 
 XUDP_2 {
-	stream_id(8), // 子隧道标识
+	stream_id(16), // stream 标识
 	atyp(8)=0x02, // 地址类型 Domain+port
 	domain_length(8), 
 	addr(..), // domain
@@ -57,7 +57,7 @@ XUDP_2 {
 }
 
 XUDP_3 {
-	stream_id(8), // 子隧道标识
+	stream_id(16), // stream 标识
 	atyp(8)=0x03, // 地址类型 IPv6+port
 	addr(128), // IPv6
 	port(16), // port
@@ -73,3 +73,9 @@ https://github.com/v2fly/v2ray-core/issues/112#issuecomment-688271288
 https://github.com/XTLS/Xray-core/discussions/252
 
 https://github.com/XTLS/Xray-core/discussions/237
+
+https://xtls.github.io/about/news.html#_2023-4-18-v1-8-1
+
+https://github.com/XTLS/Xray-core/tree/v26.2.6
+
+https://github.com/SagerNet/sing-vmess/tree/v0.2.7
