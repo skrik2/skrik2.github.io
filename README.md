@@ -1,5 +1,7 @@
 # 2026
 
+[socks5 代理过程](https://skrik2.github.io/2026/03/7-socks5.html)
+
 [我所理解的 UoT Protocol Version 2](https://skrik2.github.io/2026/03/6-uot2.html)
 
 [我所理解的 XUDP](https://skrik2.github.io/2026/03/5-xudp.html)
