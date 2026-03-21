@@ -12,16 +12,16 @@
 
 ```js
 auth_nego_request {
-	version(1)=0x05,
+	version(8)=0x05,
 	// The auth_method_count field contains the number of method identifier octets that
   // appear in the auth_method_list field.
-  auth_method_count(1),
+  auth_method_count(8),
 	auth_method_list(auth_method_count),
 }
 
 auth_nego_repley {
-	version(1)=0x05,
-	method(1),
+	version(8)=0x05,
+	method(8),
 }
 ```
 
@@ -53,21 +53,21 @@ rfc 中定义的 method 方法：
 
 ```js
 proxy_request {
-    version(1)=0x05,
-    cmd(1)=0x01, // CONNECT
-    reserved(1)=0x00,
-    atyp(1),
-    [domain_length(1)],
+    version(8)=0x05,
+    cmd(8)=0x01, // CONNECT
+    reserved(8)=0x00,
+    atyp(8),
+    [domain_length(8)],
     dst_addr(..)
-    dst_port(2),
+    dst_port(16),
 }
 
 proxy_reply {
-    version(1)=0x05,
-    reply(1),
-    reserved(1)=0x00,
-    atyp(1),
-    [domain_length(1)],
+    version(8)=0x05,
+    reply(8),
+    reserved(8)=0x00,
+    atyp(8),
+    [domain_length(8)],
     bnd_addr(..),
     bnd_port(..)
 }
@@ -122,21 +122,21 @@ reply 的值：
 
 ```js
 proxy_request {
-    version(1)=0x05,
-    cmd(1)=0x03, // UDP ASSOCIATE
-    reserved(1)=0x00,
-    atyp(1),
-    [domain_length(1)],
+    version(8)=0x05,
+    cmd(8)=0x03, // UDP ASSOCIATE
+    reserved(8)=0x00,
+    atyp(8),
+    [domain_length(8)],
     dst_addr(..)
-    dst_port(2),
+    dst_port(16),
 }
 
 proxy_reply {
-    version(1)=0x05,
-    reply(1),
-    reserved(1)=0x00,
-    atyp(1),
-    [domain_length(1)],
+    version(8)=0x05,
+    reply(8),
+    reserved(8)=0x00,
+    atyp(8),
+    [domain_length(8)],
     bnd_addr(..),
     bnd_port(..)
 }
