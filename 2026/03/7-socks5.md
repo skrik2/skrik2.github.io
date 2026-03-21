@@ -14,8 +14,8 @@
 auth_nego_request {
 	version(8)=0x05,
 	// The auth_method_count field contains the number of method identifier octets that
-  // appear in the auth_method_list field.
-  auth_method_count(8),
+    // appear in the auth_method_list field.
+    auth_method_count(8),
 	auth_method_list(auth_method_count),
 }
 
