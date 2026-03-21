@@ -4,8 +4,6 @@
 > 
 - socks5 代理的是 TCP, UDP 流量，无法代理 icmp 流量
 
-https://github.com/openrfs/rfs/blob/main/rfc/1/1.v1.md 
-
 # 版本协商和验证
 
 ## 第一阶段
