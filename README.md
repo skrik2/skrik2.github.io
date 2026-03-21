@@ -1,5 +1,7 @@
 # 2026
 
+[我所理解的 NAT 类型](https://skrik2.github.io/2026/03/4-nat-type.html)
+
 [在代理场景下 DNS 的最佳实践 v2](https://skrik2.github.io/2026/03/3-best-practices-for-dns-in-proxy-scenarios.html)
 
 [Xiaomi Phone User Guide](https://skrik2.github.io/2026/03/02-xiaomi-phone-user-guide.html)
