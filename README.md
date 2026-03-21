@@ -1,6 +1,6 @@
 # 2026
 
-[我所理解的 XUDP](https://skrik2.github.io/2026/03/5-xudp.md)
+[我所理解的 XUDP](https://skrik2.github.io/2026/03/5-xudp.html)
 
 [我所理解的 NAT 类型](https://skrik2.github.io/2026/03/4-nat-type.html)
 
