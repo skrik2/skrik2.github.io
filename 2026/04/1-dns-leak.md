@@ -18,12 +18,12 @@ xxxx.com
 random-id.xxxx.com
 ```
 
-网站会记录哪个 IP 查询了这个域名.
+开发者维护的 DNS 权威服务器会记录哪个 IP 查询了这个域名.
 
 把记录到 IP 和 geo 数据库对比.
 
-如果，发现该是 cloudflare 的 IP，但是实际却是 Telecom 的 IP.
+如果，预期是 cloudflare 的 IP，但是实际却是 Telecom 的 IP.
 
-那不就说明实际查询 DNS 用了 telecom 的 DNS 服务器，而不是 cloudflare 的.
+那就说明实际查询 DNS 用了 telecom 的 DNS 服务器，而不是 cloudflare.
 
 也就是发生了 DNS Leak.
