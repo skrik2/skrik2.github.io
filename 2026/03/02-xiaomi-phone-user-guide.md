@@ -12,10 +12,26 @@ setting -> app -> Google Play Store -> Battery -> Battery saver -> No restrictio
 
 谷歌商店闪退，安装很慢，有很多原因.
 
-我的的建议是开 usb 调试，查系统日志.
+我的的建议是开 usb 调试，查系统日志，能确定实际的原因.
 
 **不建议：通过更新系统的方式解决这个问题**
 
 如果实在无法解决，下载 [Aurora Store](https://github.com/whyorean/AuroraStore) 替代谷歌商店.
 
 我遇到的情况是，谷歌商店有问题，其他用到谷歌框架的应用没问题.
+
+# 一些 app 滥用权限
+
+我注意到某些 app 有两套权限
+
+```
+App -> permissions
+
+Additional settings -> Accessibility -> Downloaded apps 
+```
+
+# 一些关掉的设置
+
+```
+Addtitional settings -> Additional app features -> Xiaomi Hyper XiaoAi | MiProtect | Security - Find debice
+```
