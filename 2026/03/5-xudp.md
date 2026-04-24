@@ -11,10 +11,10 @@ client - xudp_client - proxy_server.xudp_server - dst_server
 - 再通过一条可靠有序双向 tunnel 发送给 proxy_server 
 - proxy_server.xudp_server 接收到 XUDP 包，将其重组成 UDP 包，再将其发送目标服务器
 - 对 dst_server 而言，所有通信都来自 proxy_server
-- 如果 xudp_server 用于发送的端口收到 UDP 包，先执行 UDP 过滤策略（由具体实现决定），过滤后的 UDP 重组成 XUDP 发送给 xudp_client
+- 如果 xudp_server 用于发送UDP的端口收到 UDP 包，先执行 UDP 过滤策略（由具体实现决定），过滤后的 UDP 重组成 XUDP 发送给 xudp_client
 	- xudp.addr = UDP 来源地址
 - UDP 映射行为的实际表现由 proxy_server 底层网络 NAT 拓扑与 proxy_server.xudp_server 的映射策略共同决定
-	- 其中 FullCone 等行为由映射策略对回流来源的过滤规则所决定的
+	- 其中 FullCone 等行为由映射策略对回流来源的过滤规则所决定的 （理论上可以 FullCone 但实际能不能，看实际网络情况）
 
 XUDP Stream:
 
