@@ -14,7 +14,7 @@ client - xudp_client - proxy_server.xudp_server - dst_server
 - 如果 xudp_server 用于发送UDP的端口收到 UDP 包，先执行 UDP 过滤策略（由具体实现决定），过滤后的 UDP 重组成 XUDP 发送给 xudp_client
 	- xudp.addr = UDP 来源地址
 - UDP 映射行为的实际表现由 proxy_server 底层网络 NAT 拓扑与 proxy_server.xudp_server 的映射策略共同决定
-	- 其中 FullCone 等行为由映射策略对回流来源的过滤规则所决定的 （理论上可以 FullCone 但实际能不能，看实际网络情况）
+	- 其中 FullCone 等行为由映射策略对回流来源的过滤规则所决定的 （大白话：理论上可以 FullCone 但实际能不能，看具体网络情况）
 
 XUDP Stream:
 
@@ -22,8 +22,9 @@ XUDP Stream:
 - stream_id 表示一个逻辑 UDP 会话，**其在 proxy_server 侧对应一组端口映射与地址状态。**
 - client 和 server 各自独立在每个方向（上行下行）维护独立的 addr state（四个状态）
 - 通过 ATYP 进行：
-	- state update
-	- state reference
+	- state update （状态更新）
+	- state reference （状态引用）
+- 大白话：怎么复用该子隧道上一次使用的地址和端口
 
 # 报文格式
 
