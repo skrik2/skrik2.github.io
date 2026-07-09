@@ -128,7 +128,7 @@ flowchart TD
   resolve -- 配置了 nameserver-policy --> nameserver-policy
   resolve -- 未配置 nameserver-policy --> nameserver
 
-  nameserver-policy -- 未匹配到 --> nameserver
+  nameserver-policy -- 未匹配到 nameserver-policy--> nameserver
   nameserver-policy --> response
 
   nameserver -- 配置了 fallback --> fallback
