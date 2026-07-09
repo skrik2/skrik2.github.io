@@ -4,7 +4,7 @@
 
 # 路由系统
 
-- 路由系统匹配代理请求的元数据，然后使用路由规则对应的 Outbound 出站
+- 路由系统匹配代理请求的元数据，然后使用路由规则对应的出站
 - 路由规则有多条，由上到下，依次匹配
 
 **请求元数据**
@@ -36,23 +36,26 @@ flowchart TD
   Policy[匹配 nameserver-policy]
   Concurrent[使用 nameserver 和 fallback 并发查询]
   fallback-filter[匹配 fallback-filter（注 3）]
-  DirectNS[使用 direct-nameserver 解析]
+  direct-nameserver[使用 direct-nameserver 解析]
 
   GetIP[查询得到IP]
 
   Proxy[Proxy Outbound]
   Direct[Direct Outbound]
   Outbound[Outbound]
+  Outbound2[Outbound]
+  Outbound3[Outbound]
 
   Rule -- 域名类型规则 --> Domain
   Rule -- 目标 IP 类型规则（注 2） --> IP
   Rule -- 其他类型规则 --> OtherType
 
   Domain -- 出站是直连 --> Resolve
-  Domain -- 出站是直连+配置了 direct-nameserver --> DirectNS
+  Domain -- 出站是直连+配置了 direct-nameserver --> direct-nameserver
 
-  IP --> Resolve
-  OtherType -- 直接使用对应的出站 --> Outbound
+  IP -- 请求元数据没有 DstIP+规则没有 no-resolve --> Resolve
+  IP -- 出站 --> Outbound2
+  OtherType -- 出站 --> Outbound
 
   Resolve -- 配置了 nameserver-policy --> Policy
   Policy -- 未匹配到 --> NameServer
@@ -64,13 +67,11 @@ flowchart TD
   fallback-filter --> GetIP
   NameServer -- 未配置 fallback --> GetIP
 
-  GetIP -- 匹配到直连并配置了 direct-nameserver --> DirectNS
-  DirectNS --> Direct
+  GetIP -- 出站是直连+配置了 direct-nameserver（注 4） --> direct-nameserver
+  direct-nameserver --出站--> Direct
 
-  GetIP -- 出站是代理（注 4） --> Proxy
+  GetIP -- 出站（注 5） --> Outbound3
   Domain -- 出站是代理 --> Proxy
-
-  GetIP -- 出站是直连（注 4）--> Direct
 ```
 
 注
@@ -79,7 +80,8 @@ flowchart TD
 - 2：如果匹配的是 IP 类型的路由规则，那么会进行域名解析，然后判断解析结果是否匹配该 IP 规则，如果添加上 no-resolve 则直接跳过该规则的匹配.
   - 什么是 IP 类型的路由规则？使用的代理请求目标地址是 IP 类型的相关规则
 - 3：此时有两个查询结果，如果 nameserver 的结果符合 fallback-filter 那么最终使用 fallback 的结果 
-- 4：解析得到的 IP 会填充到元数据的 `DstIP` 中。用于本次匹配和后续遇到的 IP 规则的匹配。后续如果和某条 IP 规则匹配成功，那么发往代理的请求地址会变为 IP 而非域名。如果是直连，则直接向 IP 发起连接
+- 4：这里是 IP 规则，Domain 先解析得到 DstIP，用此匹配，出站是直连的情况，此时，如果配置了 direct-nameserver ，则用 direct-nameser 重新解析
+- 5：解析得到的 IP 会填充到元数据的 `DstIP` 中。用于本次匹配和后续遇到的 IP 规则的匹配。后续如果和某条 IP 规则匹配成功，那么发往代理的请求地址会变为 IP 而非域名。如果是直连，则直接向 IP 发起连接
 
 
 # DNS 系统
