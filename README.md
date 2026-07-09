@@ -1,6 +1,6 @@
 # 2026
 
-[mihomo 心智模型](https://skrik2.github.io/2026/07/1-mihomo-mental-model.html)
+[mihomo 心智模型](https://github.com/skrik2/skrik2.github.io/blob/main/2026/07/1-mihomo-mental-model.md)
 
 [我所理解的 DNS Leak](https://skrik2.github.io/2026/04/1-dns-leak.html)
 
