@@ -8,14 +8,12 @@ client - xudp_client - proxy_server.xudp_server - dst_server
 
 - xudp_client 接收到 client 发送的 udp，先将其重组成 XUDP 格式的包
 	- xudp.addr = UDP 目标地址
-- 再通过一条可靠有序双向 tunnel 发送给 proxy_server 
+- 再通过一条可靠有序双向 tunnel 发送给 proxy_server
 - proxy_server.xudp_server 接收到 XUDP 包，将其重组成 UDP 包，再将其发送目标服务器
-- 对 dst_server 而言，所有通信都来自 proxy_server
-- 如果 xudp_server 用于发送UDP的端口收到 UDP 包，先执行 UDP 过滤策略（由具体实现决定），过滤后的 UDP 重组成 XUDP 发送给 xudp_client
-	- xudp.addr = UDP 来源地址
-- UDP 映射行为的实际表现由 proxy_server 底层网络 NAT 拓扑与 proxy_server.xudp_server 的映射策略共同决定
-	- 其中 FullCone 等行为由映射策略对回流来源的过滤规则所决定的
- 	- 大白话：理论上可以 FullCone 但实际能不能，看具体网络情况，比如，如果 VPS 厂商的防火墙禁止 FullCone，那就不能 FullCone
+	- 对 dst_server 而言，所有通信都来自 proxy_server
+- UDP 回流包由 xudp_server 封装为 XUDP 发送给 xudp_client，其中 xudp.addr 为 UDP 来源地址。
+- UDP Nat 行为（比如是否 FullCone）由代理软件和物理机防火墙的 UDP 策略共同决定。
+	- 大白话：如果 VPS 厂商的防火墙禁止 FullCone，即便代理软件支持 FullCone，也无法 FullCone
 
 XUDP Stream:
 
